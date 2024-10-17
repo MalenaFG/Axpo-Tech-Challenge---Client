@@ -1,4 +1,5 @@
 import React from "react";
+import MemberCard from "../MemberCard/MemberCard";
 
 const BalancingCircleDetails = ({ data }) => {
 
@@ -10,11 +11,7 @@ const BalancingCircleDetails = ({ data }) => {
                     <h3>Members:</h3>
                     <ul>
                         {data.members.map((member) => (
-                            <li key={member.id}>
-                                <strong>Name:</strong> {member.name} <br />
-                                <strong>Type:</strong> {member.type} <br />
-                                <strong>Category:</strong> {member.category}
-                            </li>
+                            <MemberCard member={member} />
                         ))}
                     </ul>
                 </>
