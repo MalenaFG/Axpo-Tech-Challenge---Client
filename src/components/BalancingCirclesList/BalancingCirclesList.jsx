@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 const API_URL = "http://localhost:5295/api"
 
-const BalancingCircleList = () => {
+const BalancingCirclesList = () => {
 
     const [balancingData, setBalancingData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -23,12 +25,12 @@ const BalancingCircleList = () => {
     }
 
     return (
-        <div>
+        <div className="BalancingCirclesList">
             {isLoading ?
                 "Loading..."
                 : balancingData.map((circle) => (
                     <div key={circle.id}>
-                        {circle.name}
+                        <Button as={Link} to={`/balancing-circles/${circle.id}`} variant='light' className='w-100'>{circle.name}</Button>
                     </div>
                 ))}
         </div>
@@ -36,4 +38,4 @@ const BalancingCircleList = () => {
 
 }
 
-export default BalancingCircleList
+export default BalancingCirclesList
