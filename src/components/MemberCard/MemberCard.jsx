@@ -1,12 +1,25 @@
-const MemberCard = ({ member }) => {
+import { Button, Card } from "react-bootstrap"
+import { Link } from "react-router-dom"
+
+const MemberCard = ({ member, circleId }) => {
+
+    const { name, type, category, id } = member
+
     return (
         <div className="MemberCard">
-            <li key={member.id}>
-                <strong>Name:</strong> {member.name} <br />
-                <strong>Type:</strong> {member.type} <br />
-                <strong>Category:</strong> {member.category}
-            </li>
+            <Card>
+                <Card.Body>
 
+                    <Card.Title>{name}</Card.Title>
+
+                    <Card.Text>
+                        <strong>{type}</strong>: {category}
+                    </Card.Text>
+
+                    <Button as={Link} to={`/balancing-circles/${circleId}/member/${id}`} variant="light">Details</Button>
+
+                </Card.Body>
+            </Card>
         </div>
     )
 }
