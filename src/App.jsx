@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import './App.css'
-import BalancingCircleList from './components/BalancingCircleList/BalancingCircleList'
+import AppRoutes from './routes/AppRoutes'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>Axpo Group</h1>
-      <BalancingCircleList />
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
     </>
   )
 }
