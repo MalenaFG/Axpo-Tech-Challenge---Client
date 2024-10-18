@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import { Button, Card, Modal, Table } from "react-bootstrap"
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
 
 const API_URL = "http://localhost:5295/api"
 
-const MemberCard = ({ member }) => {
+const MemberCard = ({ member, updateTotals }) => {
 
     const [memberDetails, setMemberDetails] = useState({})
     const [isLoading, setIsLoading] = useState(true)
@@ -33,7 +31,9 @@ const MemberCard = ({ member }) => {
             .get(`${API_URL}/v1/balancing/member/${id}/forecast`)
             .then(({ data }) => {
                 setMemberDetails(data)
-                setTotalForecast(calculateTotalForecast(data.forecast, type))
+                const total = calculateTotalForecast(data.forecast, type)
+                setTotalForecast(total)
+                updateTotals(total, type)
                 setIsLoading(false)
             })
             .catch(
@@ -44,50 +44,53 @@ const MemberCard = ({ member }) => {
 
     return (
         <div className="MemberCard">
-            <Card>
-                <Card.Body>
+            {isLoading ?
+                "Loading..."
+                :
+                <Card>
+                    <Card.Body>
 
-                    <Card.Title >{name}</Card.Title>
+                        <Card.Title >{name}</Card.Title>
 
-                    <Card.Text>
-                        <strong>{type}</strong>: {category}
-                        <hr />
-                        Total Forecast: {totalForecast.toFixed(2)} MW
-                    </Card.Text>
+                        <Card.Text>
+                            <strong>{type}</strong>: {category}
+                            Total Forecast: {totalForecast.toFixed(2)} MW
+                        </Card.Text>
 
-                    <Button onClick={handleShow} variant="light" >View Insights</Button>
+                        <Button onClick={handleShow} variant="light" >View Insights</Button>
 
-                    <Modal show={show} onHide={handleClose} scrollable>
-                        <Modal.Header closeButton>
-                            <Modal.Title>{name}</Modal.Title>
-                        </Modal.Header>
+                        <Modal show={show} onHide={handleClose} scrollable>
+                            <Modal.Header closeButton>
+                                <Modal.Title>{name}</Modal.Title>
+                            </Modal.Header>
 
-                        <Modal.Body>
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {memberDetails.forecast?.map((forecast, index) => (
-                                        <tr key={index}>
-                                            <td>{new Date(forecast.date).toLocaleString()}</td>
-                                            <td>{forecast.value.toFixed(2)}</td>
+                            <Modal.Body>
+                                <Table>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Value</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </Table>
-                        </Modal.Body>
+                                    </thead>
+                                    <tbody>
+                                        {memberDetails.forecast?.map((forecast, index) => (
+                                            <tr key={index}>
+                                                <td>{new Date(forecast.date).toLocaleString()}</td>
+                                                <td>{forecast.value.toFixed(2)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </Table>
+                            </Modal.Body>
 
-                        <Modal.Footer>
-                            <Modal.Title>{type}: {category}</Modal.Title>
-                        </Modal.Footer>
-                    </Modal>
+                            <Modal.Footer>
+                                <Modal.Title>{type}: {category}</Modal.Title>
+                            </Modal.Footer>
+                        </Modal>
 
-                </Card.Body>
-            </Card>
+                    </Card.Body>
+                </Card>
+            }
         </div>
     )
 }
