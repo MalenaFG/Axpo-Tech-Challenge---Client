@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css"
 import AppRoutes from './routes/AppRoutes'
 import { BrowserRouter } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <Container>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </Container>
     </>
   )
 }

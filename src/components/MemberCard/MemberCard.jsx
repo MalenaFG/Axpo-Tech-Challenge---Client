@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import axios from "axios"
 import { Button, Card, Modal, Table } from "react-bootstrap"
 
 const API_URL = "http://localhost:5295/api"
 
-const MemberCard = ({ member, updateTotals }) => {
+const MemberCard = ({ member, updateTotals, updateHourlyData }) => {
 
     const [memberDetails, setMemberDetails] = useState({})
     const [isLoading, setIsLoading] = useState(true)
-    const [totalForecast, setTotalForecast] = useState(0);
+    const [totalForecast, setTotalForecast] = useState(0)
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -20,9 +20,9 @@ const MemberCard = ({ member, updateTotals }) => {
     const { name, type, category, id } = member
 
     const calculateTotalForecast = (forecast = [], memberType) => {
-        const total = forecast.reduce((sum, { value }) => sum + value, 0)
+        const totalValue = forecast.reduce((sum, { value }) => sum + value, 0)
         return (
-            memberType === "Producer" ? total : -total
+            memberType === "Producer" ? totalValue : -totalValue
         )
     }
 
@@ -34,12 +34,13 @@ const MemberCard = ({ member, updateTotals }) => {
                 const total = calculateTotalForecast(data.forecast, type)
                 setTotalForecast(total)
                 updateTotals(total, type)
+                updateHourlyData(data.forecast, type)
                 setIsLoading(false)
             })
-            .catch(
-                err => console.log(err),
+            .catch(err => {
+                console.log(err)
                 setIsLoading(false)
-            )
+            })
     }
 
     return (
@@ -50,7 +51,7 @@ const MemberCard = ({ member, updateTotals }) => {
                 <Card>
                     <Card.Body>
 
-                        <Card.Title >{name}</Card.Title>
+                        <Card.Title>{name}</Card.Title>
 
                         <Card.Text>
                             <strong>{type}</strong>: {category}

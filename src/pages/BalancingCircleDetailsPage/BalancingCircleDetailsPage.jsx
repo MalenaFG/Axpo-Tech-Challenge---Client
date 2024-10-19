@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import BalancingCircleDetails from "../../components/BalancingCircleDetails/BalancingCircleDetails"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import "../BalancingCircleDetailsPage/BalancingCircleDetailsPage.css"
 
 const API_URL = "http://localhost:5295/api"
 

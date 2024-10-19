@@ -1,0 +1,9 @@
+.HomePage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.developer {
+    color: #213547;
+}

@@ -3,7 +3,7 @@ import BalancingCirclesList from "../../components/BalancingCirclesList/Balancin
 const BalancingCirclesListPage = () => {
     return (
         <div className="BalancingCirclesList">
-            <h1>Balancing Circles List</h1>
+            <h1 className="title">Balancing Circles</h1>
             <BalancingCirclesList />
         </div>
     )
