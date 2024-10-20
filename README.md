@@ -34,3 +34,9 @@ To set up and run this application locally, please follow these steps. Note that
   `/balancing-circles/:circleId` 
 - **Not Found Page**:
   `*`
+
+- **Project Gallery**:  
+![Screenshot of the App](./docs/images/HomePage.jpg)
+![Screenshot of the App](./docs/images/CirclesList.jpg)
+![Screenshot of the App](./docs/images/CircleInsights.jpg)
+![Screenshot of the App](./docs/images/MemberForecast.jpg)
