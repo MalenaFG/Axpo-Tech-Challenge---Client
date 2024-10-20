@@ -33,6 +33,7 @@ const BalancingCircleDetails = ({ data }) => {
 
     const updateHourlyData = (forecast, type) => {
         const updatedHourlyData = { ...hourlyData }
+        console.log(updatedHourlyData)
 
         forecast.forEach(({ date, value }) => {
             const hour = new Date(date).getHours()
@@ -72,26 +73,36 @@ const BalancingCircleDetails = ({ data }) => {
         <div>
             {data ? (
                 <>
-                    <h2 className="title">{name} Members</h2>
+                    <h1 className="title">{name} Members</h1>
                     <Row>
-                        <Col md={6}>
-                            <h3>Producers:</h3>
+                        <Col md={6} className="mb-5">
+                            <h2>Producers:</h2>
                             {producers.map((member) => (
-                                <MemberCard member={member} key={member.id} circleId={id} updateTotals={updateTotals} updateHourlyData={updateHourlyData} />
+                                <MemberCard
+                                    member={member}
+                                    key={member.id}
+                                    circleId={id}
+                                    updateTotals={updateTotals}
+                                    updateHourlyData={updateHourlyData} />
                             ))}
                         </Col>
-                        <Col md={6}>
-                            <h3>Consumers:</h3>
+                        <Col md={6} className="mb-5">
+                            <h2>Consumers:</h2>
                             {consumers.map((member) => (
-                                <MemberCard member={member} key={member.id} circleId={id} updateTotals={updateTotals} updateHourlyData={updateHourlyData} />
+                                <MemberCard
+                                    member={member}
+                                    key={member.id}
+                                    circleId={id}
+                                    updateTotals={updateTotals}
+                                    updateHourlyData={updateHourlyData} />
                             ))}
                         </Col>
                         <Col className="imbalance-info">
-
-                            <h3>Total Imbalance: {imbalance.toFixed(2)} MW</h3>
+                            <h2>Total Imbalance: </h2>
+                            <h1 className="title">{imbalance.toFixed(2)} MW</h1>
                         </Col>
                         <Col className="imbalance-info">
-                            <h3>Hourly Imbalance:</h3>
+                            <h2>Hourly Imbalance:</h2>
                             <ul>
                                 {Object.entries(hourlyImbalance).map(([hour, imbalance]) => (
                                     <li key={hour}>

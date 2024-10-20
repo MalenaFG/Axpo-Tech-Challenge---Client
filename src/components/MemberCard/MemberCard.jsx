@@ -55,12 +55,17 @@ const MemberCard = ({ member, updateTotals, updateHourlyData }) => {
 
                         <Card.Text>
                             <strong>{type}</strong>: {category}
-                            Total Forecast: {totalForecast.toFixed(2)} MW
                         </Card.Text>
-
+                        <Card.Text>
+                            <strong>Total Forecast:</strong> {totalForecast.toFixed(2)} MW
+                        </Card.Text>
                         <Button onClick={handleShow} variant="light" >View Insights</Button>
 
-                        <Modal show={show} onHide={handleClose} scrollable>
+                        <Modal
+                            show={show}
+                            onHide={handleClose}
+                            scrollable
+                        >
                             <Modal.Header closeButton>
                                 <Modal.Title>{name}</Modal.Title>
                             </Modal.Header>

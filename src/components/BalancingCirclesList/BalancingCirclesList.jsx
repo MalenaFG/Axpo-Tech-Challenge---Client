@@ -28,7 +28,7 @@ const BalancingCirclesList = () => {
         <div className="BalancingCirclesList">
             {isLoading ?
                 "Loading..."
-                : balancingData.map((circle) => (
+                : balancingData.map(circle => (
                     <div key={circle.id}>
                         <Button as={Link} to={`/balancing-circles/${circle.id}`} variant='light' className='w-100'>{circle.name}</Button>
                     </div>

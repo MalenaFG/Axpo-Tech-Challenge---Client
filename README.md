@@ -6,7 +6,7 @@ This is a single-page application developed using React and JavaScript for the A
 
 - **Balancing Circles Details**: 
   - View members categorized as producers (incomes) and consumers (outcomes), along with their insights and total forecast.
-  - Displays the total imbalance for each balancing circle. Note: Currently experiencing challenges with this feature's accuracy.
+  - Displays the total imbalance for each balancing circle.
   - Provides a one-day-ahead imbalance prediction, broken down by the hour of the day.
 
 ## Installation
@@ -32,9 +32,5 @@ To set up and run this application locally, please follow these steps. Note that
   `/balancing-circles`
 - **Balancing Circle Details**:  
   `/balancing-circles/:circleId` 
-- **Not Found**:  
+- **Not Found Page**:
   `*`
-
-## Known Issues
-
-- The total imbalance calculation might not return the correct results. Further investigation and debugging are needed to resolve this issue effectively.
