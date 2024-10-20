@@ -63,7 +63,7 @@ const BalancingCircleDetails = ({ data }) => {
 
 
     const { id, name, members = [] } = data || {}
-    const imbalance = totalIncomes - totalOutcomes
+    const imbalance = totalIncomes + totalOutcomes
     const hourlyImbalance = calculateHourlyImbalance()
     const producers = members.filter(member => member.type === "Producer")
     const consumers = members.filter(member => member.type === "Consumer")
@@ -88,7 +88,7 @@ const BalancingCircleDetails = ({ data }) => {
                         </Col>
                         <Col className="imbalance-info">
 
-                            <h3>Imbalance: {imbalance.toFixed(2)} MW</h3>
+                            <h3>Total Imbalance: {imbalance.toFixed(2)} MW</h3>
                         </Col>
                         <Col className="imbalance-info">
                             <h3>Hourly Imbalance:</h3>
