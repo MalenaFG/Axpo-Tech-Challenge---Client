@@ -2,8 +2,6 @@
 
 This is a single-page application developed using React and JavaScript for the Axpo Group - Tech challenge. The application enables users to view various balancing circles and their respective details.
 
-To run the app
-
 ## Features
 
 - **Balancing Circles Details**: 
